@@ -367,7 +367,9 @@ class AvS_FastSimpleImport_Model_Import_Entity_Category extends Mage_ImportExpor
             if ($pathSize > 1) {
                 $path = array();
                 for ($i = 1; $i < $pathSize; $i++) {
-                    $path[] = $collection->getItemById($structure[$i])->getName();
+                    if($collection->getItemById($structure[$i])) {
+                        $path[] = $collection->getItemById($structure[$i])->getName();
+                    }
                 }
                 $rootCategoryName = array_shift($path);
                 if (!isset($this->_categoriesWithRoots[$rootCategoryName])) {
